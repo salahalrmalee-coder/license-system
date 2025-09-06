@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>لوحة التحكم - نظام مراقبة التراخيص</title> 
+  <link rel="icon" type="image/png" href="logo.png" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Style for the new 'Clear Data' button */
+    .btn.btn-secondary {
+      background: #64748b; /* A neutral gray */
+      color: #e2e8f0;
+      box-shadow: none;
+    }
+    .btn.btn-secondary:hover {
+      background: #525f73;
+    }
+
+    /* Styles for the notification toast */
+    .notification-container {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1050;
+      width: auto;
+    }
+    .toast-notification {
+      background-color: #1f2937;
+      border: 1px solid var(--accent);
+      color: #e5e7eb;
+      padding: 12px 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body class="dashboard-page">
+  <div class="dashboard-layout">
+    <!-- ================== Sidebar (القائمة الجانبية) ================== -->
+    <aside class="sidebar">
+      <div class="brand"> 
+        <img src="logo.png" alt="شعار مصلحة الطيران" onerror="this.style.display='none'" />
+        <div class="title">
+          <h1>مصلحة الطيران المدني</h1>
+          <div class="sub-titles">
+            <span>إدارة الملاحة الجوية</span>
+            <span>وحدة التدريب</span>
+          </div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="dashboard.html"><i class="fas fa-home fa-fw"></i><span>الرئيسية</span></a></li>
+          <li><a href="reports.html"><i class="fas fa-chart-bar fa-fw"></i><span>التقارير</span></a></li>
+          <li><a href="settings.html"><i class="fas fa-cog fa-fw"></i><span>الإعدادات</span></a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="#" class="logout-btn"><i class="fas fa-sign-out-alt fa-fw"></i><span>تسجيل الخروج</span></a>
+      </div>
+    </aside>
+
+    <!-- ================== Main Content (المحتوى الرئيسي) ================== -->
+    <main class="main-content">
+      <div style="text-align: left; margin-top: 10px; margin-bottom: 20px;">
+        <img src="logo.png" alt="شعار مصلحة الطيران المدني الليبي" style="width: 80px;">
+      </div>
+
+      <!-- Notification container -->
+      <div id="notification-container"></div>
+
+      <header class="main-header">
+        <div class="header-actions">
+          <button id="deleteBtn" class="btn btn-icon btn-danger" disabled><i class="fas fa-trash-alt"></i> حذف</button>
+          <button id="editBtn" class="btn btn-icon btn-warning" disabled><i class="fas fa-pencil-alt"></i> تعديل</button>
+          <button id="addBtn" class="btn btn-icon btn-primary"><i class="fas fa-plus"></i> إضافة موظف</button>
+        </div>
+      </header>
+
+      <!-- ================== Stats Cards (بطاقات الإحصائيات) ================== -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+          <div class="stat-info">
+            <span class="stat-title">إجمالي الأسماء</span>
+            <span class="stat-number" id="totalControllers">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+          <div class="stat-info">
+            <span class="stat-title">التراخيص السارية</span>
+            <span class="stat-number" id="activeLicenses">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon yellow"><i class="fas fa-exclamation-triangle"></i></div>
+          <div class="stat-info">
+            <span class="stat-title">قاربت على الانتهاء</span>
+            <span class="stat-number" id="expiringSoonLicenses">0</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red"><i class="fas fa-times-circle"></i></div>
+          <div class="stat-info">
+            <span class="stat-title">التراخيص المنتهية</span>
+            <span class="stat-number" id="expiredLicenses">0</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-area">
+        <!-- سيتم عرض جدول الموظفين أو البيانات هنا -->
+        <table id="dataTable" class="display" style="width:100%">
+            <!-- سيتم إنشاء رؤوس الجدول والبيانات بواسطة JavaScript -->
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <!-- Add/Edit Modal -->
+  <div id="dataModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">إضافة موظف جديد</h2>
+        <button id="closeModalBtn" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="dataForm">
+          <!-- Form fields will be dynamically generated here -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button id="saveBtn" class="btn btn-primary">حفظ</button>
+        <button id="cancelBtn" class="btn btn-secondary">إلغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

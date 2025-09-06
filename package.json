@@ -1,0 +1,20 @@
+{
+  "name": "license-management-system",
+  "version": "1.0.0",
+  "description": "A system to manage air traffic controller licenses.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^9.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "multer": "^2.0.0-rc.1",
+    "xlsx": "^0.18.5"
+  }
+}

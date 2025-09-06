@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Temporary upload folder
+uploads/
+
+# Database files
+# It's better to let the server create its own database
+data/
+licenses.db
+
+# System files
+.DS_Store
