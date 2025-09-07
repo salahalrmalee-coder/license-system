@@ -11,3 +11,6 @@ licenses.db
 
 # System files
 .DS_Store
+
+# Ignore spreadsheet files
+*.xlsx

@@ -3,10 +3,11 @@ const path = require('path');
 
 // المسار الذي سيتم فيه تخزين البيانات الدائمة
 const DATA_DIR = process.env.RENDER_DISK_PATH || __dirname;
-
-// تأكد من وجود المجلد، وقم بإنشائه إذا لم يكن موجوداً
-if (!require('fs').existsSync(DATA_DIR)) {
-    require('fs').mkdirSync(DATA_DIR, { recursive: true });
+const fs = require('fs');
+ 
+// على الخادم، نفترض أن المجلد موجود. محلياً، نقوم بإنشائه إذا لم يكن موجوداً.
+if (!process.env.RENDER_DISK_PATH && !fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true }); // This runs only locally
 }
 
 const dbPath = path.join(DATA_DIR, 'licenses.db');
