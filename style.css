@@ -1,10 +1,10 @@
 :root {
-  --bg: #0f172a;
-  --card: #111827;
-  --muted: #94a3b8;
+  --bg: #ffffff;
+  --card: #ffffff;
+  --muted: #000000;
   --accent: #22c55e;
   --accent-2: #06b6d4;
-  --border: #1f2937;
+  --border: #d1d5db;
   --danger: #ef4444;
 }
 * { box-sizing: border-box; }
@@ -14,20 +14,17 @@
    ================================= */
 body {
   margin: 0; padding: 0; font-family: Arial, sans-serif;
-  background: radial-gradient(1000px 600px at 90% -10%, rgba(34,197,94,.15), transparent),
-              radial-gradient(800px 500px at -10% 110%, rgba(6,182,212,.12), transparent),
-              var(--bg);
-  color: #e5e7eb;
+  background: var(--bg);
+  color: #000000;
   min-height: 100vh;
   display: grid; place-items: center;
 }
 
 .card {
   width: 100%; max-width: 480px; padding: 28px; border-radius: 16px;
-  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+  background: var(--card);
   border: 1px solid var(--border);
-  box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
-  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
 }
 
 .brand {
@@ -35,7 +32,7 @@ body {
   justify-content: center;
 }
 
-.brand img { width: 56px; height: 56px; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,.35)); }
+.brand img { width: 56px; height: 56px; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,.15)); }
 
 .brand .title {
   display: grid; gap: 2px;
@@ -55,17 +52,17 @@ body {
 
 .headline { text-align: center; margin: 8px 0 18px; }
 
-.headline h2 { margin: 0; font-size: 1.05rem; font-weight: 600; color: #d1d5db; }
+.headline h2 { margin: 0; font-size: 1.05rem; font-weight: 600; color: #000000; }
 
 form { display: grid; gap: 14px; margin-top: 6px; }
 
 .field { display: grid; gap: 6px; }
 
-label { font-size: .92rem; color: #cbd5e1; }
+label { font-size: .92rem; color: #000000; }
 
 .input {
-  background: #0b1220; border: 1px solid var(--border); border-radius: 10px;
-  padding: 12px 14px; color: #e5e7eb; outline: none; transition: .2s border-color, .2s box-shadow;
+  background: #ffffff; border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px 14px; color: #000000; outline: none; transition: .2s border-color, .2s box-shadow;
 }
 
 .input:focus {
@@ -92,7 +89,7 @@ label { font-size: .92rem; color: #cbd5e1; }
   filter: grayscale(40%);
 }
 
-.footer { margin-top: 14px; text-align: center; font-size: .8rem; color: #94a3b8; }
+.footer { margin-top: 14px; text-align: center; font-size: .8rem; color: #000000; }
 
 .error { margin-top: 6px; text-align: center; color: var(--danger); font-weight: 700; }
 
@@ -146,8 +143,8 @@ label { font-size: .92rem; color: #cbd5e1; }
 }
 
 .sidebar-nav a:hover {
-  background: rgba(255,255,255,.05);
-  color: #fff;
+  background: rgba(0,0,0,.06);
+  color: #000000;
 }
 
 .sidebar-nav a.active {
@@ -243,7 +240,7 @@ label { font-size: .92rem; color: #cbd5e1; }
 }
 
 .settings-card {
-    background-color: #f8f9fa; /* خلفية فاتحة للبطاقات */
+    background-color: #ffffff; /* خلفية بيضاء للبطاقات */
     border: 1px solid #dee2e6;
     padding: 24px;
     border-radius: 12px;
@@ -251,11 +248,11 @@ label { font-size: .92rem; color: #cbd5e1; }
 
 .settings-card h3 {
     margin-top: 0;
-    color: #212529; /* لون الخط أسود */
+    color: #000000; /* لون الخط أسود */
 }
 
 .settings-card p {
-    color: #495057; /* لون الخط رمادي داكن */
+    color: #000000; /* لون الخط أسود */
     line-height: 1.6;
     margin-bottom: 20px;
 }
@@ -320,7 +317,7 @@ label { font-size: .92rem; color: #cbd5e1; }
 .stat-number {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #fff;
+  color: #000000;
 }
 
 /* =================================
@@ -343,7 +340,7 @@ label { font-size: .92rem; color: #cbd5e1; }
 
 table.dataTable tbody tr.selected {
     background-color: #bce2f7 !important; /* لون أزرق مميز للصف المحدد */
-    color: #023047 !important; /* نص داكن لتباين أفضل */
+    color: #000000 !important; /* نص أسود لتباين أفضل */
     font-weight: bold;
 }
 
@@ -357,10 +354,10 @@ table.dataTable tbody tr.selected {
 }
 
 /* =============================================
-   DataTables Custom Light Blue Theme
+   DataTables Custom White Theme
    ============================================= */
 #dataTable_wrapper {
-    color: #111; /* لون النص أسود */
+    color: #000000; /* لون النص أسود */
     padding-top: 10px;
 }
 
@@ -368,31 +365,31 @@ table.dataTable tbody tr.selected {
     border-collapse: collapse !important;
     border-spacing: 0;
     width: 100% !important;
-    border: 1px solid #90c5dd; /* حدود الجدول الرئيسية */
-    background-color: #f0f9ff; /* خلفية الجدول سماوي فاتح جداً */
-    color: #111; /* لون النص أسود */
+    border: 1px solid var(--border); /* حدود الجدول الرئيسية */
+    background-color: #ffffff; /* خلفية الجدول بيضاء */
+    color: #000000; /* لون النص أسود */
 }
 
 #dataTable thead th {
-    background-color: #e0f2fe; /* خلفية الهيدر سماوي أغمق قليلاً */
-    color: #023047; /* لون نص الهيدر أزرق داكن للوضوح */
-    border: 1px solid #90c5dd; /* حدود خلايا الهيدر */
+    background-color: #ffffff; /* خلفية الهيدر بيضاء */
+    color: #000000; /* لون نص الهيدر أسود */
+    border: 1px solid var(--border); /* حدود خلايا الهيدر */
     padding: 12px 18px;
     text-align: right;
     font-weight: 700;
 }
 
 #dataTable tbody tr {
-    border-bottom: 1px solid #bce2f7; /* خط فاصل بين الصفوف */
+    border-bottom: 1px solid var(--border); /* خط فاصل بين الصفوف */
 }
 
 #dataTable tbody tr:hover {
-    background-color: #d1ecfa; /* لون الصف عند مرور الماوس */
+    background-color: #f3f4f6; /* لون الصف عند مرور الماوس */
 }
 
 #dataTable tbody td {
     padding: 10px 18px;
-    border: 1px solid #bce2f7; /* حدود الخلايا */
+    border: 1px solid var(--border); /* حدود الخلايا */
     font-size: 11px;
     font-weight: bold;
     color: #000;
@@ -403,27 +400,27 @@ table.dataTable tbody tr.selected {
 }
 
 .dataTables_filter input, .dataTables_length select {
-    background: #0b1220; /* خلفية داكنة لتناسب النص الأبيض */
-    border: 1px solid #90c5dd;
+    background: #ffffff;
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 8px 10px;
-    color: #fff; /* لون النص أبيض حسب الطلب */
+    color: #000000;
     margin-left: 5px;
 }
 
 .dataTables_paginate .paginate_button {
-    background: #e0f2fe;
-    border: 1px solid #90c5dd;
-    color: #023047 !important;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    color: #000000 !important;
     margin: 0 3px;
     border-radius: 5px;
     padding: 6px 12px;
 }
 
 .dataTables_paginate .paginate_button:hover {
-    background: #bce2f7;
-    border-color: #90c5dd;
-    color: #023047 !important;
+    background: #f3f4f6;
+    border-color: var(--border);
+    color: #000000 !important;
 }
 
 .dataTables_paginate .paginate_button.current {
@@ -435,8 +432,8 @@ table.dataTable tbody tr.selected {
 .dataTables_paginate .paginate_button.disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    background: #f0f9ff;
-    color: #999 !important;
+    background: #ffffff;
+    color: #000000 !important;
 }
 
 .dt-center {
@@ -444,7 +441,7 @@ table.dataTable tbody tr.selected {
 }
 
 /* =================================
-   Modal Styles (Unified Light Blue Theme)
+   Modal Styles (Unified White Theme)
    ================================= */
 .modal {
   display: none; /* Hidden by default */
@@ -460,11 +457,11 @@ table.dataTable tbody tr.selected {
 }
 
 .modal-content {
-  background: linear-gradient(to bottom right, #cceeff, #99ddff); /* تدرج سماوي */
+  background: #ffffff; /* خلفية بيضاء */
   color: #000000; /* خط أسود */
   margin: 8% auto;
   padding: 0;
-  border: 1px solid #99ddff;
+  border: 1px solid var(--border);
   width: 90%;
   max-width: 700px;
   border-radius: 10px;
@@ -497,7 +494,7 @@ table.dataTable tbody tr.selected {
   background: none;
   border: none;
   cursor: pointer;
-  color: #555;
+  color: #000000;
 }
 
 .close-btn:hover {
@@ -523,7 +520,7 @@ table.dataTable tbody tr.selected {
 
 .modal-body .input {
     background-color: #ffffff;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border);
     color: #000000;
 }
 
